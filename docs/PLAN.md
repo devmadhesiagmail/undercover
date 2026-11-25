@@ -139,20 +139,20 @@ Each phase is built with its tests. Then every criterion is checked and anything
 
 **Why second:** the business rules belong in the backend, where no agent or screen can get round them. Building them before the agent means they're tested on their own, without a model.
 
-- [ ] pytest covers every state change and every refusal:
-  - [ ] `start_claim` moves a waiting claim to in progress and records a start step. It can restart a claim in progress, and it's refused with 409 on a decided claim.
-  - [ ] `decide_claim`: approving $420 leaves the claim decided, and approving $1,150 leaves it waiting for sign-off. A decline and a referral are decided with a payout of zero. A second decision is refused with 409. An approval with a zero payout, or a decline with a payout, is refused with 422.
-  - [ ] `pay_claim` pays an approved $420. It refuses with 409 for a declined or referred claim, for an amount other than the payout, and for a second payment. It refuses to pay $1,150 before sign-off and records no payment. After sign-off it pays.
-  - [ ] `sign_off_claim` works only on a claim waiting for sign-off. It records the handler and the time and moves the claim to decided. An unknown handler returns 404.
-  - [ ] The limit comes from the company settings: a test that raises it in the test database lets a $1,150 payment through without sign-off.
-  - [ ] Steps come back in order, each with its thread id, kind, detail and time.
-- [ ] A walk-through with curl against the dev backend:
-  - [ ] Start CLM-1002 and record an approval of $1,150. The claim is `waiting_for_sign_off`.
-  - [ ] Paying $1,150 returns 409, with a detail saying a payout over $1,000 needs a handler's sign-off, and `GET /api/claims/CLM-1002` still shows `"payment": null`.
-  - [ ] Signing off as HND-01 moves the claim to `decided`, signed off by Dana Whitfield.
-  - [ ] Paying $1,150 now returns 200 and records the payment, and paying again returns 409.
-  - [ ] Then `npm run seed` restores the seeded state.
-- [ ] `npm run check:python` passes.
+- [x] pytest covers every state change and every refusal:
+  - [x] `start_claim` moves a waiting claim to in progress and records a start step. It can restart a claim in progress, and it's refused with 409 on a decided claim.
+  - [x] `decide_claim`: approving $420 leaves the claim decided, and approving $1,150 leaves it waiting for sign-off. A decline and a referral are decided with a payout of zero. A second decision is refused with 409. An approval with a zero payout, or a decline with a payout, is refused with 422.
+  - [x] `pay_claim` pays an approved $420. It refuses with 409 for a declined or referred claim, for an amount other than the payout, and for a second payment. It refuses to pay $1,150 before sign-off and records no payment. After sign-off it pays.
+  - [x] `sign_off_claim` works only on a claim waiting for sign-off. It records the handler and the time and moves the claim to decided. An unknown handler returns 404.
+  - [x] The limit comes from the company settings: a test that raises it in the test database lets a $1,150 payment through without sign-off.
+  - [x] Steps come back in order, each with its thread id, kind, detail and time.
+- [x] A walk-through with curl against the dev backend:
+  - [x] Start CLM-1002 and record an approval of $1,150. The claim is `waiting_for_sign_off`.
+  - [x] Paying $1,150 returns 409, with a detail saying a payout over $1,000 needs a handler's sign-off, and `GET /api/claims/CLM-1002` still shows `"payment": null`.
+  - [x] Signing off as HND-01 moves the claim to `decided`, signed off by Dana Whitfield.
+  - [x] Paying $1,150 now returns 200 and records the payment, and paying again returns 409.
+  - [x] Then `npm run seed` restores the seeded state.
+- [x] `npm run check:python` passes.
 
 ## Phase 3: The UnderCover Agent
 

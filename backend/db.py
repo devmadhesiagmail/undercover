@@ -16,6 +16,7 @@ DROP TABLE IF EXISTS handlers;
 DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS policies;
 DROP TABLE IF EXISTS claims;
+DROP TABLE IF EXISTS steps;
 
 CREATE TABLE company (id INTEGER PRIMARY KEY CHECK (id = 1), record TEXT NOT NULL);
 CREATE TABLE plans (plan TEXT PRIMARY KEY, record TEXT NOT NULL);
@@ -30,6 +31,14 @@ CREATE TABLE claims (
     decision TEXT,
     sign_off TEXT,
     payment TEXT
+);
+CREATE TABLE steps (
+    step_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    claim_id TEXT NOT NULL REFERENCES claims (claim_id),
+    thread_id TEXT NOT NULL,
+    kind TEXT NOT NULL,
+    detail TEXT NOT NULL,
+    created_at TEXT NOT NULL
 );
 """
 
