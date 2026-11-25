@@ -205,21 +205,21 @@ Each phase is built with its tests. Then every criterion is checked and anything
 
 **Why:** the queue is the handlers' home page, and the brand and end-to-end setup that every later page relies on go in here.
 
-- [ ] vitest covers the queue (rows, counts and labels from a stubbed API), money formatting, the instructions page and routing, with at least 80% statement coverage.
-- [ ] The Playwright tests pass:
-  - [ ] The queue shows 25 claims with CLM-1001 first, all Waiting.
-  - [ ] Clicking CLM-1001 opens `#/claims/CLM-1001`.
-  - [ ] The instructions page shows the policy wording.
-  - [ ] The page background is `rgb(240, 244, 245)` in light mode and `rgb(4, 35, 46)` in dark mode.
-- [ ] With `npm run dev` also running, `npm run e2e` passes and leaves the dev database's claims unchanged; this is checked with curl on port 8000 before and after.
-- [ ] In the browser, through the Playwright MCP server at http://localhost:5173:
-  - [ ] Set CLM-1002 to waiting for sign-off through the API.
-  - [ ] The queue shows the counts and each status in its color: CLM-1001 with its decision from Phase 3, CLM-1002 waiting for sign-off, and the others waiting.
-  - [ ] Headings are in Instrument Sans and ids in JetBrains Mono, panels have no outline, and there are no one-edge borders.
-  - [ ] The instructions page reads cleanly.
-  - [ ] The console shows no errors.
-  - [ ] Then `npm run seed`.
-- [ ] `npm run check:ts` passes: Prettier, ESLint, tsc in strict mode with no `any`, and vitest with at least 80% coverage.
+- [x] vitest covers the queue (rows, counts and labels from a stubbed API), money formatting, the instructions page and routing, with at least 80% statement coverage.
+- [x] The Playwright tests pass:
+  - [x] The queue shows 25 claims with CLM-1001 first, all Waiting.
+  - [x] Clicking CLM-1001 opens `#/claims/CLM-1001`.
+  - [x] The instructions page shows the policy wording.
+  - [x] The page background is `rgb(240, 244, 245)` in light mode and `rgb(4, 35, 46)` in dark mode.
+- [x] With `npm run dev` also running, `npm run e2e` passes and leaves the dev database's claims unchanged; this is checked with curl on port 8000 before and after.
+- [x] In the browser, through the Playwright MCP server at http://localhost:5173:
+  - [x] Set CLM-1002 to waiting for sign-off through the API.
+  - [x] The queue shows the counts and each status in its color: CLM-1001 with its decision from Phase 3, CLM-1002 waiting for sign-off, and the others waiting.
+  - [x] Headings are in Instrument Sans and ids in JetBrains Mono, panels have no outline, and there are no one-edge borders.
+  - [x] The instructions page reads cleanly.
+  - [x] The console shows no errors.
+  - [x] Then `npm run seed`.
+- [x] `npm run check:ts` passes: Prettier, ESLint, tsc in strict mode with no `any`, and vitest with at least 80% coverage.
 
 ## Phase 5: The claim in full, live steps and sign-off
 
