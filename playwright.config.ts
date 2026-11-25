@@ -6,6 +6,14 @@ export default defineConfig({
   outputDir: "e2e/test-results",
   reporter: "list",
   use: { baseURL: "http://localhost:5174" },
+  projects: [
+    { name: "pages", testIgnore: /claim\.spec\.ts/ },
+    {
+      name: "claims",
+      testMatch: /claim\.spec\.ts/,
+      dependencies: ["pages"],
+    },
+  ],
   webServer: [
     {
       command:

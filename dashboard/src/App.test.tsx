@@ -1,7 +1,7 @@
 import { act, cleanup, render, screen } from "@testing-library/react";
 import { afterEach, expect, it, vi } from "vitest";
 import { App } from "./App";
-import { stubApi } from "./testing";
+import { claimRoutes, stubApi, waitingForSignOff } from "./testing";
 
 afterEach(() => {
   cleanup();
@@ -11,7 +11,11 @@ afterEach(() => {
 
 function show(hash: string) {
   window.location.hash = hash;
-  stubApi({ "/api/claims": [], "/api/instructions": { instructions: "Hi" } });
+  stubApi({
+    "/api/claims": [],
+    "/api/instructions": { instructions: "Hi" },
+    ...claimRoutes(waitingForSignOff, []),
+  });
   render(<App />);
 }
 
@@ -37,9 +41,11 @@ it("shows the instructions", async () => {
   ).toBe("page");
 });
 
-it("shows a claim", () => {
-  show("#/claims/CLM-1001");
-  expect(screen.getByRole("heading", { name: "CLM-1001" })).toBeDefined();
+it("shows a claim", async () => {
+  show("#/claims/CLM-1002");
+  expect(
+    await screen.findByRole("heading", { name: "CLM-1002" }),
+  ).toBeDefined();
 });
 
 it("says when a page doesn't exist", () => {

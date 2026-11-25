@@ -350,6 +350,235 @@ th.amount {
   padding: 6px 12px;
 }
 
+/* The claim page */
+
+.back {
+  margin: 0 0 12px;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px 24px;
+  margin: 0 0 24px;
+}
+
+.facts dt {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.facts dd {
+  margin: 2px 0 0;
+}
+
+.facts-list {
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin: 0;
+}
+
+.facts-list div {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 12px;
+}
+
+.facts-list dd {
+  margin: 0;
+}
+
+.claim-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.panel h2 {
+  margin-bottom: 12px;
+}
+
+.panel h3 {
+  margin: 20px 0 8px;
+  font-size: 0.9375rem;
+}
+
+.decision {
+  margin: 0 0 8px;
+  font-size: 1.375rem;
+  font-weight: 650;
+}
+
+.outcome {
+  display: grid;
+  gap: 4px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  font-weight: 550;
+}
+
+.story {
+  margin: 0;
+}
+
+.items tbody tr:nth-child(odd) {
+  background: var(--wash);
+}
+
+.items tfoot td {
+  font-weight: 600;
+}
+
+.document-card {
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: var(--wash);
+}
+
+.document-card h4 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 6px;
+  font-size: 0.9375rem;
+}
+
+.document-card p {
+  margin: 0;
+  font-size: 0.9375rem;
+}
+
+.history {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding-left: 18px;
+}
+
+.steps {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--wash);
+}
+
+.step-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.step-text {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.step-args {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.step-message {
+  font-weight: 550;
+}
+
+.step-result summary {
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+
+.step-result.refused summary {
+  color: var(--refused-ink);
+  font-weight: 550;
+}
+
+.step-result pre {
+  max-height: 320px;
+  margin: 8px 0 0;
+  overflow: auto;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.sign-off {
+  display: grid;
+  justify-items: start;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--coral) 20%, transparent);
+}
+
+.sign-off h3,
+.sign-off p {
+  margin: 0;
+}
+
+label {
+  display: grid;
+  gap: 4px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+select {
+  min-width: 280px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 400;
+  color: var(--ink);
+  background: var(--panel);
+}
+
+button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 600;
+  color: var(--midnight);
+  background: var(--sea-green);
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--cerulean);
+  outline-offset: 2px;
+}
+
+@media (max-width: 960px) {
+  .claim-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 760px) {
   .app {
     padding: 16px;

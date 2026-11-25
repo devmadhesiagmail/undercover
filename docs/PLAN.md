@@ -235,21 +235,21 @@ Each phase is built with its tests. Then every criterion is checked and anything
 
 **Why:** this is where a handler checks the agent's work and releases over-limit payments. It's also where the spec's "what the agent is doing, step by step" is seen.
 
-- [ ] vitest covers each section from a stubbed API, "No decision yet", each kind of step, and sign-off calling `sign_off_claim` then `pay_claim` with the chosen handler and the payout. An error shows when a call is refused.
-- [ ] The Playwright tests pass. They set up their claims through the API, with no model:
-  - [ ] CLM-1003's page shows the story, the items, the documents, the policy and the claim history.
-  - [ ] A step posted through the API while CLM-1005's page is open appears within 5 seconds, without a reload.
-  - [ ] The sign-off flow:
-    - [ ] CLM-1002 is put into waiting for sign-off through the API, with a pay attempt that's refused.
-    - [ ] The page shows Waiting for sign-off and the refused step.
-    - [ ] Choosing Dana Whitfield and clicking **Sign off and pay $1,150.00** leaves the page showing Decided, "Signed off by Dana Whitfield" and "Paid $1,150.00".
-    - [ ] The queue then shows CLM-1002 as Decided.
-- [ ] In the browser, through the Playwright MCP server on the dev server:
-  - [ ] Set CLM-1002 to waiting for sign-off through the API.
-  - [ ] The claim page is laid out cleanly in light mode, and the sign-off panel works.
-  - [ ] The console shows no errors.
-  - [ ] Then `npm run seed`.
-- [ ] `npm run check:ts` passes.
+- [x] vitest covers each section from a stubbed API, "No decision yet", each kind of step, and sign-off calling `sign_off_claim` then `pay_claim` with the chosen handler and the payout. An error shows when a call is refused.
+- [x] The Playwright tests pass. They set up their claims through the API, with no model:
+  - [x] CLM-1003's page shows the story, the items, the documents, the policy and the claim history.
+  - [x] A step posted through the API while CLM-1005's page is open appears within 5 seconds, without a reload.
+  - [x] The sign-off flow:
+    - [x] CLM-1002 is put into waiting for sign-off through the API, with a pay attempt that's refused.
+    - [x] The page shows Waiting for sign-off and the refused step.
+    - [x] Choosing Dana Whitfield and clicking **Sign off and pay $1,150.00** leaves the page showing Decided, "Signed off by Dana Whitfield" and "Paid $1,150.00".
+    - [x] The queue then shows CLM-1002 as Decided.
+- [x] In the browser, through the Playwright MCP server on the dev server:
+  - [x] Set CLM-1002 to waiting for sign-off through the API.
+  - [x] The claim page is laid out cleanly in light mode, and the sign-off panel works.
+  - [x] The console shows no errors.
+  - [x] Then `npm run seed`.
+- [x] `npm run check:ts` passes.
 
 ## Phase 6: The live check and hand-over
 

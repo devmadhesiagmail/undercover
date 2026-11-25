@@ -1,6 +1,6 @@
 # Status
 
-The claims pilot, built from `docs/PLAN.md`. Phases 1 to 4 of 6 are done.
+The claims pilot, built from `docs/PLAN.md`. Phases 1 to 5 of 6 are done.
 
 ## What's built
 
@@ -8,8 +8,8 @@ The claims pilot, built from `docs/PLAN.md`. Phases 1 to 4 of 6 are done.
 - The claim workflow: `start_claim`, `add_step`, `list_steps`, `decide_claim`, `pay_claim` and `sign_off_claim`. A claim moves from waiting to in progress to decided, or to waiting for sign-off when the agent approves more than the payout approval limit in `data/company.json` ($1,000). `pay_claim` refuses with 409 until a handler has signed off such a payout.
 - `backend/instructions.md`: the agent's instructions. `get_instructions` returns them followed by `data/policy_wording.md`.
 - `agent/`: the UnderCover Agent, LangChain's `create_agent` on OpenRouter. `run(claim_id, thread_id)` fetches the instructions from the backend, starts the claim, streams the agent and posts each tool call, tool result and message as a step. Its five tools each wrap one API operation: `get_claim`, `get_policy`, `get_claim_history`, `decide_claim` and `pay_claim`. A refusal comes back to the model as `Refused: <reason>`. It uses `openai/gpt-6-luna` with low reasoning effort, or `MODEL_NAME` when it's set.
-- `dashboard/`: React, in UnderCover's brand, light and dark following the system setting. Hash routing: `#/` is the queue, with a count of claims in each state and every claim in queue order, refreshed every 2 seconds. `#/instructions` shows the agent's instructions and the policy wording, read only. `#/claims/CLM-1001` is a placeholder for the claim page.
-- `e2e/`: Playwright tests of the queue, the instructions page and the light and dark backgrounds.
+- `dashboard/`: React, in UnderCover's brand, light and dark following the system setting. Hash routing: `#/` is the queue, with a count of claims in each state and every claim in queue order, refreshed every 2 seconds. `#/instructions` shows the agent's instructions and the policy wording, read only. `#/claims/CLM-1001` shows a claim in full: its header, the agent's decision with the reason and policy section, the sign-off and payment, the story, items and documents, the policy and the customer's claim history. The agent's steps refresh every 2 seconds, with tool results folded and refusals in Raspberry. A claim waiting for sign-off has a choice of handler and **Sign off and pay**, which calls `sign_off_claim` then `pay_claim`.
+- `e2e/`: Playwright tests of the queue, the instructions page, the light and dark backgrounds, the claim page, live steps and the sign-off flow. The tests that change claims run after the ones that read the seeded queue.
 
 ## How to run it
 
