@@ -257,17 +257,17 @@ Each phase is built with its tests. Then every criterion is checked and anything
 
 **Why:** every earlier check used a stub or set claims up through the API. This one watches the real agent work a claim on the dashboard, as a handler would.
 
-- [ ] With `npm run dev` running and CLM-1004's page open through the Playwright MCP server, `uv run -m agent CLM-1004` runs. This is the second and last live claim.
-  - [ ] The page shows the claim In progress.
-  - [ ] Its steps appear while the agent works.
-  - [ ] It ends with the agent's decision, reason and policy section.
-- [ ] The queue shows CLM-1004 with its decision and the other 24 claims waiting.
-- [ ] `docs/STATUS.md` says:
-  - [ ] What's built.
-  - [ ] How to run it: `npm run dev`, `npm run seed`, `uv run -m agent` and `uv run -m agent CLM-1001`. The agent needs the backend running.
-  - [ ] That the end-to-end tests use their own database.
-  - [ ] What the pilot leaves out.
-- [ ] `npm run check` passes in full, and the results are reported.
+- [x] With `npm run dev` running and CLM-1004's page open through the Playwright MCP server, `uv run -m agent CLM-1004` runs. This is the second and last live claim.
+  - [x] The page shows the claim In progress.
+  - [x] Its steps appear while the agent works.
+  - [x] It ends with the agent's decision, reason and policy section.
+- [x] The queue shows CLM-1004 with its decision and the other 24 claims waiting.
+- [x] `docs/STATUS.md` says:
+  - [x] What's built.
+  - [x] How to run it: `npm run dev`, `npm run seed`, `uv run -m agent` and `uv run -m agent CLM-1001`. The agent needs the backend running.
+  - [x] That the end-to-end tests use their own database.
+  - [x] What the pilot leaves out.
+- [x] `npm run check` passes in full, and the results are reported.
 
 ---
 
