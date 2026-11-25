@@ -5,13 +5,17 @@ import sqlite3
 from collections.abc import AsyncIterator, Iterator
 from contextlib import asynccontextmanager, closing
 from datetime import UTC, datetime
+from pathlib import Path
 from typing import Annotated, Any, Literal, Self
 
 from fastapi import Depends, FastAPI, HTTPException
 from pydantic import BaseModel, Field, model_validator
 
 from backend import db
-from backend.seed import seed
+from backend.seed import DATA, seed
+
+INSTRUCTIONS = Path(__file__).parent / "instructions.md"
+WORDING = DATA / "policy_wording.md"
 
 CLAIMS_QUERY = """
 SELECT claims.*, json_extract(customers.record, '$.name') AS customer_name
@@ -298,6 +302,14 @@ def list_handlers(conn: Database) -> list[dict[str, Any]]:
             }
         )
     return handlers
+
+
+@app.get("/api/instructions", operation_id="get_instructions")
+def get_instructions() -> dict[str, str]:
+    """Get the agent's instructions, followed by the policy wording."""
+    instructions = INSTRUCTIONS.read_text(encoding="utf-8")
+    wording = WORDING.read_text(encoding="utf-8")
+    return {"instructions": f"{instructions}\n{wording}"}
 
 
 @app.post("/api/claims/{claim_id}/start", operation_id="start_claim")

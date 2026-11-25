@@ -106,3 +106,11 @@ def test_unknown_ids_return_404(path, detail):
     response = client.get(path)
     assert response.status_code == 404
     assert response.json() == {"detail": detail}
+
+
+def test_get_instructions():
+    instructions = client.get("/api/instructions").json()["instructions"]
+    assert instructions.startswith("# The UnderCover Agent")
+    assert "The policy wording follows." in instructions
+    assert "Version 2026.1" in instructions
+    assert instructions.index("decide_claim") < instructions.index("Version 2026.1")

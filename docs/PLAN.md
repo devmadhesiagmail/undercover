@@ -174,22 +174,22 @@ Each phase is built with its tests. Then every criterion is checked and anything
 
 **Why:** this is the pilot's purpose. The tests drive the agent with a scripted stub model, so every path is checked without spending anything. One live run then proves the wiring to OpenRouter.
 
-- [ ] pytest passes with a stub model, and covers:
-  - [ ] The agent has exactly the five tools, and none reads a file.
-  - [ ] Each tool calls its operation, and a refusal comes back as text.
-  - [ ] The system prompt the model receives is the text from `GET /api/instructions`.
-  - [ ] A scripted run on CLM-1001 reads the claim, the policy and the history, approves $420 and pays. The claim ends decided and paid $420, and its steps are recorded in order: start, calls, results, message.
-  - [ ] A scripted run on CLM-1002 approves $1,150 and tries to pay. The claim ends waiting for sign-off with no payment, and the pay step's result says it was refused.
-  - [ ] A scripted decline and a scripted referral each end decided with no payment.
-  - [ ] With no arguments, the command line works only the waiting claims, in queue order. With ids, it works those claims.
-  - [ ] `model()` uses `openai/gpt-6-luna` with low reasoning effort, or `MODEL_NAME` when it's set.
-- [ ] `curl -s localhost:8000/api/instructions` returns the instructions followed by the policy wording, including "Version 2026.1".
-- [ ] Live check, the only model spend in this phase: with the backend running, `uv run -m agent CLM-1001` prints a line for CLM-1001 with a decision.
-  - [ ] `GET /api/claims/CLM-1001` shows status `decided` or `waiting_for_sign_off`, a reason of two or three sentences and a policy section.
-  - [ ] `GET /api/claims/CLM-1001/steps` shows the reads of the claim, the policy and the history, then the decision.
+- [x] pytest passes with a stub model, and covers:
+  - [x] The agent has exactly the five tools, and none reads a file.
+  - [x] Each tool calls its operation, and a refusal comes back as text.
+  - [x] The system prompt the model receives is the text from `GET /api/instructions`.
+  - [x] A scripted run on CLM-1001 reads the claim, the policy and the history, approves $420 and pays. The claim ends decided and paid $420, and its steps are recorded in order: start, calls, results, message.
+  - [x] A scripted run on CLM-1002 approves $1,150 and tries to pay. The claim ends waiting for sign-off with no payment, and the pay step's result says it was refused.
+  - [x] A scripted decline and a scripted referral each end decided with no payment.
+  - [x] With no arguments, the command line works only the waiting claims, in queue order. With ids, it works those claims.
+  - [x] `model()` uses `openai/gpt-6-luna` with low reasoning effort, or `MODEL_NAME` when it's set.
+- [x] `curl -s localhost:8000/api/instructions` returns the instructions followed by the policy wording, including "Version 2026.1".
+- [x] Live check, the only model spend in this phase: with the backend running, `uv run -m agent CLM-1001` prints a line for CLM-1001 with a decision.
+  - [x] `GET /api/claims/CLM-1001` shows status `decided` or `waiting_for_sign_off`, a reason of two or three sentences and a policy section.
+  - [x] `GET /api/claims/CLM-1001/steps` shows the reads of the claim, the policy and the history, then the decision.
   - This checks that the agent works the claim end to end. It doesn't check that the decision is right; that's what the handlers' decisions in `data/evals/` are for, in a later build.
-- [ ] Running `uv run -m agent CLM-1001` again prints that the claim is already decided and changes nothing.
-- [ ] `npm run check:python` passes.
+- [x] Running `uv run -m agent CLM-1001` again prints that the claim is already decided and changes nothing.
+- [x] `npm run check:python` passes.
 
 ## Phase 4: The dashboard's brand, queue and instructions
 
